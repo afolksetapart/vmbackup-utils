@@ -13,4 +13,4 @@ instructions.
 
 It has no friendly error handling.
 
-Clone this repo to `/etc`.
+Clone this repo to `/etc` and set ENV vars.
