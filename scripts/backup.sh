@@ -4,6 +4,12 @@ source /etc/vmbackup-utils/.env
 
 BACKUP_TYPE=$1
 
+if [ $BACKUP_TYPE = "hourly" ]; then
+       TYPE_DIR="latest"
+else
+       TYPE_DIR=$(date '+%Y%m%d')
+fi
+
 echo "Attemping $BACKUP_TYPE vmbackup..."
 
 exec 9>/etc/vmbackup-utils/vmbackup_lockfile
@@ -19,7 +25,7 @@ DOCKER_OUTPUT=$(docker run --rm \
         -storageDataPath=$VMBACKUP_STORAGE_DATA_PATH \
         -snapshot.createURL=$VMBACKUP_CREATE_URL \
         -customS3Endpoint=$S3_ENDPOINT \
-        -dst=$S3_DIR \
+        -dst=$S3_DIR/$TYPE_DIR \
         2>&1)
 
 DOCKER_EXIT_STATUS=$?
