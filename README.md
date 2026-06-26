@@ -12,3 +12,5 @@ corresponding to S3_DIR, relative to official vmbackup "smart" backup
 instructions.
 
 It has no friendly error handling.
+
+Clone this repo to `/etc`.
